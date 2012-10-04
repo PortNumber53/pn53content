@@ -44,6 +44,12 @@ return array(
 				Url::site('/media/library/js/jquery.filedrop.js', TRUE) => TRUE,
 				Url::site('/script/common.js', TRUE) => TRUE,
 			),
+			'gallery' => array(
+				'thumbnail' => array(
+					'width' => 320,
+					'height' => 240,
+				),
+			),
 		),
 	),
 

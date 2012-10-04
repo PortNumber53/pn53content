@@ -21,7 +21,12 @@
 					<li data-id="<?php echo $image_item['_id']; ?>" data-original-name="<?php echo $image_item['original_name']; ?>" data-tags="<?php echo $tags; ?>" data-stats="image-statsimage-stats">
 						<?php echo $image_item['original_name']; ?><br />
 						<div class="image">
-							<img src="<?php echo Url::site(Route::get('dynimage')->uri(array('path'=>substr($image_item['_id'], 0, 66), 'format'=>$image_item['format'], 'width'=>420, 'height'=>315)), TRUE); ?>" />
+							<img src="<?php echo Url::site(Route::get('dynimage')->uri(array(
+								'path'=>substr($image_item['_id'], 0, 66),
+								'format'=>$image_item['format'],
+								'width'=>Arr::path($site_settings, 'template.backend.gallery.thumbnail.width'),
+								'height'=>Arr::path($site_settings, 'template.backend.gallery.thumbnail.height'),
+							), TRUE)); ?>" />
 						</div>
 					</li>
 					<?php
