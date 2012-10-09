@@ -69,15 +69,14 @@ class Controller_Base_Dynimage extends Controller
 						}
 						else
 						{
-							$new_width = (int) ($src_width * $ratio_x);
+							$new_width = (int) ($src_width * $ratio_y);
 							$new_height = (int) $height;
-
 						}
 						//echo $new_width, $new_height;
 						$image->resize($new_width, $new_height, true);
 						break;
-					default:
 					case 'full':
+					default:
 						$image = Image::factory($target_file);
 						$width = $image->width;
 						$height = $image->height;

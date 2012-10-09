@@ -97,5 +97,28 @@ if (! Route::$cache)
 		'action'     => 'dashboard',
 	));
 
+	Route::set('sitemap', 'sitemap/<name>:<page>.<format>',
+		array(
+			'name' => '[a-zA-Z0-9_/\-]+',
+			'page' => '[0-9]+',
+			'format' => '(xml|txt)',
+		))
+		->defaults(array(
+		'controller' => 'sitemap',
+		'action' => 'generate',
+		'page' => 1,
+	));
 
+	Route::set('seo-robots', 'robots.txt')
+		->defaults(array(
+		'controller' => 'robots',
+		'action' => 'index',
+	));
+
+
+	Route::set('pn53content', '(<controller>(/<action>(/<id>)))')
+	->defaults(array(
+		'controller' => 'gallery',
+		'action'     => 'browse',
+	));
 }

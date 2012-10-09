@@ -18,6 +18,7 @@ return array(
 			'name' => 'default',
 			'style' => array(
 				Url::site('template/default/css/style.css', TRUE) => 'screen',
+				Url::site('template/default/css/gallery.css', TRUE) => 'screen',
 			),
 			'script' => array(
 				Url::site('/media/library/ckeditor/ckeditor.js', TRUE) => TRUE,

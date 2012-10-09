@@ -64,7 +64,7 @@ class Controller_Base_Website extends Controller_Template
 
 		if (empty($this->template_file))
 		{
-			$this->template_file = 'index';
+			$this->template_file = 'frontend';
 		}
 		$this->template = 'template/' . $this->template_name . '/' . $this->template_file;
 

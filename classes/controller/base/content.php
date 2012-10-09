@@ -7,7 +7,8 @@
  * Description: something meaningful about the file
  */
 
-class Controller_Base_Content  extends Controller_Base_Website {
+class Controller_Base_Content  extends Controller_Base_Website
+{
 
 	public function action_view()
 	{

@@ -74,7 +74,7 @@
 
     <section>
 		<?php
-		echo $content;
+		echo View::factory($main)->render();
 		?>
     </section>
 
