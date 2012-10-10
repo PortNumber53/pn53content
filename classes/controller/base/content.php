@@ -23,9 +23,6 @@ class Controller_Base_Content  extends Controller_Base_Website
 
 		if ($content_data)
 		{
-			//View::bind_global('content_data', $content_data);
-			//$this->content = View::factory('content/main')->render();
-
 			View::set_global('content_data', $content_data);
 			View::set_global('main', 'content/main');
 		}
@@ -41,9 +38,6 @@ class Controller_Base_Content  extends Controller_Base_Website
 
 		$content_model = new Model_Content();
 		$content_data = $content_model->get_post_by_url('/'.$request);
-
-		//View::bind_global('content_data', $content_data);
-		//$this->content = View::factory('content/edit')->render();
 
 		View::set_global('content_data', $content_data);
 		View::set_global('main', 'content/edit');
