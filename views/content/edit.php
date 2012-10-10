@@ -49,9 +49,17 @@
                     </div>
 
                     <div class="form-actions" style="position: fixed; bottom: 0px">
-                        <button class="btn" type="submit" id="btn_add_new_section">Add new section</button>
-                        <button class="btn btn-primary" type="submit">Save changes</button>
-                        <button class="btn">Cancel</button>
+
+					<div class="navbar navbar-inverse navbar-fixed-bottom">
+						<div class="navbar-inner">
+							<ul class="nav">
+								<li><button class="btn" type="submit" id="btn_add_new_section">Add new section</button></li>
+								<li><button class="btn btn-primary" type="submit">Save changes</button></li>
+								<li><button class="btn">Cancel</button></li>
+							</ul>
+						</div>
+					</div>
+
                     </div>
 
                 </fieldset>
@@ -202,8 +210,8 @@ for ($counter = 0; $counter < $max; $counter++)
 {
 	$section = $content_data['sections'][$counter];
 	?>
-    $("#sections").append( build_template(<?php echo $counter; ?>, '<?php echo $section['title']; ?>', '<?php echo str_replace("\r", '', str_replace("\n", '', $section['content'])); ?>', '<?php echo $section['image']; ?>') );
-    bind_filedrop("thumbnail_<?php echo $counter; ?>");
+    $("#sections").append( build_template(<?php echo $counter; ?>, '<?php echo $section['title']; ?>', '<?php echo str_replace("\r", '', str_replace("\n", '', $section['content'])); ?>', '<?php echo $section['picture']; ?>') );
+    //bind_filedrop("thumbnail_<?php echo $counter; ?>");
 	<?php
 }
 echo "number_of_sections = $counter;\n";
@@ -321,4 +329,4 @@ echo "number_of_sections = $counter;\n";
 
 
 <?php
-echo "Content Data<pre>";var_dump($content_data);echo"</pre>";
+//echo "Content Data<pre>";var_dump($content_data);echo"</pre>";
