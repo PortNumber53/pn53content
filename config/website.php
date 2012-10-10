@@ -26,6 +26,7 @@ return array(
 				Url::site('/media/library/ckeditor/adapters/jquery.js', TRUE) => TRUE,
 				//Url::site('/media/library/js/jquery.filedrop.js', TRUE) => TRUE,
 				Url::site('/media/library/knockoutjs/knockout-2.1.0.js', TRUE) => TRUE,
+				Url::site('/media/library/js/jquery.filedrop.js', TRUE) => TRUE,
 				Url::site('/script/common.js', TRUE) => TRUE,
 			),
 		),

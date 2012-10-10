@@ -210,7 +210,7 @@ for ($counter = 0; $counter < $max; $counter++)
 {
 	$section = $content_data['sections'][$counter];
 	?>
-    $("#sections").append( build_template(<?php echo $counter; ?>, '<?php echo $section['title']; ?>', '<?php echo str_replace("\r", '', str_replace("\n", '', $section['content'])); ?>', '<?php echo $section['picture']; ?>') );
+    $("#sections").append( build_template(<?php echo $counter; ?>, '<?php echo $section['title']; ?>', '<?php echo str_replace("\r", '', str_replace("\n", '', $section['content'])); ?>', '<?php echo empty($section['picture']) ? '' : $section['picture']; ?>') );
     //bind_filedrop("thumbnail_<?php echo $counter; ?>");
 	<?php
 }
