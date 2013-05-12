@@ -6,4 +6,9 @@
  * Description: somthing meaningful about the file
  */
 
-class Controller_Service_Base_Service extends Controller_Base_Website { }
+class Controller_Service_Base_Service extends Controller_Base_Website
+{
+
+	public $auto_render = FALSE;
+
+}

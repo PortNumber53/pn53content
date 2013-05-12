@@ -47,9 +47,6 @@ class Content
 		//$post['sections'] = json_decode($post['sections'], true);
 	}
 
-
-
-
 	static private $_current_time = null;
 	static public function current_time()
 	{

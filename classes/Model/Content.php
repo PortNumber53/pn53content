@@ -1,9 +1,4 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-/**
- * User: mauricio
- * Date: 9/15/12 3:47 PM
- * Package: Package_Name
- */
 
 class Model_Content extends Kohana_Model_Database {
 
@@ -16,6 +11,11 @@ class Model_Content extends Kohana_Model_Database {
 		'created_at' => array('data_type' => 'timestamp', 'is_nullable' => true),
 		'updated_at' => array('data_type' => 'datetime', 'is_nullable' => true),
 	);
+
+	protected $_exposed_columns = array(
+		'content_id' =>TRUE,
+	);
+
 
 	public function empty_post()
 	{
@@ -108,17 +108,41 @@ class Model_Content extends Kohana_Model_Database {
 			$post['last_updated'] = $post['first_published'];
 		}
 
-		//Check if URL already exists
-		$temp = $this->get_post_by_url($post['url']);
-		if ($temp) {
-			$post['_id'] = $temp['_id'];
+		if (empty($post['content_id']))
+		{
+			$result = DB::insert('autoincrement', array_keys(array()))->values(array())->execute();
+			$post['content_id'] = $result[0];
 		}
 
+		if (isset($post['manual_url']) && $post['manual_url'])
+		{
+			$post['_id'] = '/' . $post['url'];
+		}
+		else
+		{
+			$post['_id'] = '/' . $post['content_id'] . '-' . $post['url'];
+		}
+
+
 		$row_data = array(
-			'_id' => $post['url'],
+			'_id' => $post['_id'],
 			'data' => json_encode($post),
 			'updated_at' => date('Y-m-d H:i:s'),
 		);
+		foreach ($this->_exposed_columns as $column=>$enabled)
+		{
+			if ($enabled && isset($post[$column]))
+			{
+				$row_data[$column] = $post[$column];
+			}
+		}
+
+		//Check if URL already exists
+		$temp = $this->get_post_by_id($post['_id']);
+		if ($temp) {
+			//$post['_id'] = $temp['_id'];
+		}
+
 
 		if (! $temp)
 		{
@@ -147,10 +171,10 @@ class Model_Content extends Kohana_Model_Database {
 	}
 
 
-	public function get_post_by_url($url, $follow_redirect=TRUE)
+	public function get_post_by_id($url, $follow_redirect=TRUE)
 	{
 		$query = DB::select()->from('content')->where($this->_primary_key, '=', $url);
-		#echo (string) $query;
+		//echo (string) $query;
 		$result_set = $query->execute()->as_array();
 		if (count($result_set) == 1)
 		{
@@ -161,10 +185,10 @@ class Model_Content extends Kohana_Model_Database {
 			Content::sections_to_json($result);
 			//$result['sections'] = json_decode($result['sections'], true);
 
-			if ($result['type'] == 'redirect' && $follow_redirect)
-			{
-				$result = $this->get_post_by_url($result['redirect_url']);
-			}
+			//if ($result['type'] == 'redirect' && $follow_redirect)
+			//{
+			//	$result = $this->get_post_by_url($result['redirect_url']);
+			//}
 
 			return $result;
 		}

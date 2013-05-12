@@ -20,9 +20,6 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/main.css">
-	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
 	<?php foreach ($scripts as $file) echo HTML::script($file), PHP_EOL; ?>
 	<?php
@@ -48,9 +45,13 @@
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
+<?php echo View::factory('modules/header')->render(); ?>
+
+
+
 <!-- Add your site or application content here -->
-<?php echo empty($main) ? '{main content was not set}' : $main; ?>
-<p>Hello world! This is HTML5 Boilerplate.</p>
+<?php echo View::factory($main)->render(); ?>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>

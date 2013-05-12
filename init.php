@@ -9,14 +9,12 @@ if (! Route::$cache)
 {
 	Route::set('user-actions', '<action>',
 		array(
-			'language' => '(en-us|en-gb|pt-br)',
-			'action' => '(admin|signup|createaccount|login|profile|log_out)',
+			'action' => '(reset_password|sign_up|login|profile|logout)',
 		))
 		->defaults(array(
-		'language'   => 'en-us',
-		'controller' => 'user',
-		//'action'     => 'profile',
-	));
+			'controller' => 'Account',
+			'action'     => 'profile',
+		));
 
 /*
 	Route::set('browse-content', '<request>.html',
@@ -38,15 +36,6 @@ if (! Route::$cache)
 		'action'     => 'index',
 	));
 
-	Route::set('content-stuff', '<request>.html(:<action>)',
-		array(
-			'request'       => '[a-zA-Z0-9_\/\.=-]+',
-			'action'        => '(edit|save|delete|view)',
-		))
-		->defaults(array(
-		'controller' => 'content',
-		'action'     => 'view',
-	));
 
 	Route::set('dynimage', '(<language>/)<path>(:<width>x<height>)(:<method>).<format>',
 		array(
@@ -112,5 +101,25 @@ if (! Route::$cache)
 		'controller' => 'robots',
 		'action' => 'index',
 	));
+
+	Route::set('html-content', '(<request>.html)(<override>)',
+		array(
+			'request'       => '[a-zA-Z0-9_/\-]+',
+			'override'      => '(:edit)',
+		))->filter(function($route, $params, $request)
+		{
+			// Prefix the method to the action name
+			if ( ! empty($params['override']) && $params['override'] == ':edit')
+			{
+				$params['action'] = 'edit';
+				$params['directory'] = 'Backend';
+			}
+			//$params['action'] = strtolower($request->method()).'_'.$params['action'];
+			return $params; // Returning an array will replace the parameters
+		})
+		->defaults(array(
+			'controller' => 'Content',
+			'action'     => 'view',
+		));
 
 }

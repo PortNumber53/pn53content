@@ -14,11 +14,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="<?php echo URL::Site(Route::get('default')->uri(array('controller'=>'content', 'action'=>'view',)), TRUE); ?>">Project name</a>
+			<a class="brand" href="<?php echo URL::Site(Route::get('html-content')->uri(array('request' => 'about',)), TRUE); ?>">Project name</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li><a href="#">Home</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="<?php echo URL::Site(Route::get('html-content')->uri(array('request' => 'contact',)), TRUE); ?>">Contact</a></li>
+					<li><a href="<?php echo URL::Site(Route::get('user-actions')->uri(array('action' => 'login',)), TRUE); ?>">Log In</a></li>
 					<li class="active"><a href="<?php echo URL::Site(Route::get('default')->uri(array('controller'=>'gallery', 'action'=>'browse',)), TRUE); ?>">Gallery</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
