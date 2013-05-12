@@ -1,10 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/15/12 2:26 PM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 
 class Controller_Base_Website extends Controller_Template
@@ -25,8 +23,6 @@ class Controller_Base_Website extends Controller_Template
 
 	public function __construct(Request $request, Response $response)
 	{
-		Cookie::$salt = '123123';
-
 		$debug = Kohana::$config->load('website.debug');
 		$this->facebook_stuff = Kohana::$config->load('website.facebook');
 		View::bind_global('debug', $debug);
@@ -36,14 +32,14 @@ class Controller_Base_Website extends Controller_Template
 		parent::__construct($request, $response);
 		//If a user is not logged in and authentication is required:
 		if ($this->auth_required && ! $this->user)
-			$this->request->redirect('login?url='.Url::site(Request::current()->uri()));
+			$this->request->redirect('login?url='.URL::site(Request::current()->uri()));
 
 		if (in_array($this->request->action(), $this->auth_actions))
 		{
 			if ( ! $this->user)
 			{
 				echo $this->request->action() . ' requires Authentication!';
-				$this->request->redirect('login?url='.Url::site(Request::current()->uri()));
+				$this->request->redirect('login?url='.URL::site(Request::current()->uri()));
 			}
 			$this->template_file = 'backend';
 		};
@@ -161,7 +157,7 @@ class Controller_Base_Website extends Controller_Template
 				0 => array(
 					'active'    => true,
 					'label'     => __('Home'),
-					'link'      => Url::site('/'),
+					'link'      => URL::site('/'),
 				),
 			);
 		}
@@ -179,7 +175,7 @@ class Controller_Base_Website extends Controller_Template
 		if ($this->auto_render)
 		{
 			View::bind_global('user', $this->user);
-			View::set_global('current_url', Url::site(Request::factory()->current()->uri(), true));
+			View::set_global('current_url', URL::site(Request::factory()->current()->uri(), true));
 
 			$cps_config = Kohana::$config->load('website')->as_array();
 

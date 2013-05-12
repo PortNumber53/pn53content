@@ -1,14 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/15/12 2:27 PM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 
 class Controller_Base_Content  extends Controller_Base_Website
 {
+
+	public function action_index()
+	{
+		$this->action_view();
+	}
 
 	public function action_view()
 	{
@@ -24,7 +27,12 @@ class Controller_Base_Content  extends Controller_Base_Website
 		if ($content_data)
 		{
 			View::set_global('content_data', $content_data);
-			View::set_global('main', 'content/main');
+			View::set_global('main', View::factory('content/main')->render() );
+		}
+		else
+		{
+			View::set_global('content_data', $content_data);
+			View::set_global('main', View::factory('template/default/http/404')->render() );
 		}
 	}
 

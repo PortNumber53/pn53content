@@ -1,10 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/22/12 12:52 AM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 ?>
 

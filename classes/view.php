@@ -1,16 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/15/12 3:21 PM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 
 class View extends Kohana_View
 {
 	static public $template_name = '';
 	static public $scripts = array();
+	static public $buffers = array();
 
 	/**
 	 * Sets the view filename.
@@ -66,6 +65,30 @@ class View extends Kohana_View
 		{
 			View::$_global_data[$key][$subkey] = $value;
 		}
+	}
+
+
+	public static function start_buffer($buffer_name)
+	{
+		self::$buffers[$buffer_name] = '';
+		ob_start();
+	}
+
+	public static function end_buffer($buffer_name)
+	{
+		self::$buffers[$buffer_name] = ob_get_clean();
+	}
+
+
+	public function render($file = NULL)
+	{
+		$rendered = parent::render($file);
+
+		if (! empty(self::$buffers['head_end']))
+		{
+			$rendered = str_replace('</head>', self::$buffers['head_end'] . '</head>', $rendered);
+		}
+		return $rendered;
 	}
 
 }

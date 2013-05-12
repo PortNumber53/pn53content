@@ -1,10 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/26/12 1:29 AM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 
 class Controller_Base_Dynimage extends Controller

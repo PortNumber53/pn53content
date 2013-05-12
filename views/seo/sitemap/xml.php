@@ -1,10 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 10/8/12 12:05 AM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n"; ?>

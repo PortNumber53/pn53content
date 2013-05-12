@@ -1,10 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/20/12 2:00 AM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 
 class Model_Image extends Kohana_Model_Database {

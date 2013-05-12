@@ -1,10 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/15/12 5:14 PM
  * Package: Package_Name
- * Description: something meaningful about the file
  */
 
 ?>
@@ -16,12 +14,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="<?php echo Url::Site(Route::get('pn53content')->uri(array('controller'=>'content', 'action'=>'view',)), TRUE); ?>">Project name</a>
+			<a class="brand" href="<?php echo URL::Site(Route::get('default')->uri(array('controller'=>'content', 'action'=>'view',)), TRUE); ?>">Project name</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li><a href="#">Home</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li class="active"><a href="<?php echo Url::Site(Route::get('pn53content')->uri(array('controller'=>'gallery', 'action'=>'browse',)), TRUE); ?>">Gallery</a></li>
+					<li class="active"><a href="<?php echo URL::Site(Route::get('default')->uri(array('controller'=>'gallery', 'action'=>'browse',)), TRUE); ?>">Gallery</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

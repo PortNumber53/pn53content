@@ -1,10 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Created by JetBrains PhpStorm.
  * User: mauricio
  * Date: 9/15/12 2:14 PM
- * Package: Package_Name
- * Description: something meaningful about the file
+ * Package: PN53Content routes
  */
 
 if (! Route::$cache)
@@ -115,10 +113,4 @@ if (! Route::$cache)
 		'action' => 'index',
 	));
 
-
-	Route::set('pn53content', '(<controller>(/<action>(/<id>)))')
-	->defaults(array(
-		'controller' => 'gallery',
-		'action'     => 'browse',
-	));
 }
